@@ -22,9 +22,12 @@ pipeline {
         stage('Deploy') { 
             steps { 
                 script { 
-                    docker.withRegistry( 'REGISTRY_HOST', REGISTRY_CRED ) { 
-                        dockerImage.push("${env.BUILD_NUMBER}") 
-                         dockerImage.push('latest')
+                    docker.withRegistry( 'https://registry-harbor.app.bangun-kreatif.com', REGISTRY_CRED ) { 
+
+                      def customImage = docker.build("FULL_IMAGE_NAME:${env.BUILD_ID}")
+
+                        /* Push the container to the custom Registry */
+                        customImage.push()
                     }
                 } 
             }
