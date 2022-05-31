@@ -1,6 +1,5 @@
 pipeline {
     environment {
-        REGISTRY_URL = "https://registry-harbor.app.bangun-kreatif.com"
         REGISTRY_HOST = "registry-harbor.app.bangun-kreatif.com"
         IMAGE_NAME = "tes-fe"
         FULL_IMAGE_NAME = "$REGISTRY_HOST/empatnusabangsa/tes/$IMAGE_NAME"
