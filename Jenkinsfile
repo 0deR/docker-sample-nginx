@@ -34,7 +34,8 @@ pipeline {
         stage('Deploy to GKE') {
             steps {       
                     sh "sed -i 's/${env.IMAGE_NAME}:latest/${env.IMAGE_NAME}:${env.BUILD_ID}/g' deployment.yaml"
- }
+            }
+        }
         stage('Deploy to local') {         
             steps{
                 withKubeCredentials(kubectlCredentials: [[contextName: 'k3s', credentialsId: 'kubernetesToken', namespace: 'default', 
