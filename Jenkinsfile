@@ -16,7 +16,7 @@ pipeline {
                 script { 
                     docker.withRegistry( 'https://registry-harbor.app.bangun-kreatif.com', REGISTRY_CRED ) { 
 
-                      def customImage = docker.build("FULL_IMAGE_NAME:${env.BUILD_ID}")
+                      def customImage = docker.build("$FULL_IMAGE_NAME:${env.BUILD_ID}")
 
                         /* Push the container to the custom Registry */
                         customImage.push()
