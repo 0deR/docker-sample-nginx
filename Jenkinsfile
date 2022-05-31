@@ -14,7 +14,7 @@ pipeline {
         stage('Deploy') { 
             steps { 
                 script { 
-                    docker.withRegistry( 'https://registry-harbor.app.bangun-kreatif.com', REGISTRY_CRED ) { 
+                    docker.withRegistry( ${env.REGISTRY_HOST}, REGISTRY_CRED ) { 
 
                       def customImage = docker.build("$FULL_IMAGE_NAME:${env.BUILD_ID}")
 
