@@ -1,5 +1,6 @@
 pipeline {
     environment {
+        REGISTRY_URL = "https://registry-harbor.app.bangun-kreatif.com"
         REGISTRY_HOST = "registry-harbor.app.bangun-kreatif.com"
         IMAGE_NAME = "tes-fe"
         FULL_IMAGE_NAME = "$REGISTRY_HOST/empatnusabangsa/tes/$IMAGE_NAME"
@@ -14,12 +15,12 @@ pipeline {
         stage('Deploy') { 
             steps { 
                 script { 
-                    docker.withRegistry( 'https://$REGISTRY_HOST', REGISTRY_CRED ) { 
+                    docker.withRegistry( REGISTRY_URL, REGISTRY_CRED ) { 
 
                       def customImage = docker.build("$FULL_IMAGE_NAME:${env.BUILD_ID}")
 
                         /* Push the container to the custom Registry */
-                        customImage.push("$FULL_IMAGE_NAME:${env.BUILD_ID}")
+                      customImage.push()
                     }
                 } 
             }
