@@ -15,7 +15,7 @@ pipeline {
         stage('Deploy') { 
             steps { 
                 script { 
-                    docker.withRegistry( "https:// + ($REGISTRY_HOST) ", REGISTRY_CRED ) { 
+                    docker.withRegistry( "https://$REGISTRY_HOST", REGISTRY_CRED ) { 
 
                       def customImage = docker.build("$FULL_IMAGE_NAME:${env.BUILD_ID}")
 
