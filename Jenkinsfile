@@ -19,7 +19,7 @@ pipeline {
                       def customImage = docker.build("$FULL_IMAGE_NAME:${env.BUILD_ID}")
 
                         /* Push the container to the custom Registry */
-                        customImage.push()
+                        customImage.push("$FULL_IMAGE_NAME:${env.BUILD_ID}")
                     }
                 } 
             }
