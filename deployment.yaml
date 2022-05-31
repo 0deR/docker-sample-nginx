@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hooda-gateway
-  namespace: default
+  namespace: hooda
 spec:
   selector:
     matchLabels:
