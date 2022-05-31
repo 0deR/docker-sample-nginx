@@ -10,14 +10,6 @@ pipeline {
     agent any
 
     stages {
- 
-        stage('Building our image') {
-            steps {
-                script {
-                    DOCKER_IMAGE = docker.build FULL_IMAGE_NAME + ":$BUILD_NUMBER"
-                }
-            }
-        }
 
         stage('Deploy') { 
             steps { 
