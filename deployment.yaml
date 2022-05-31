@@ -1,1 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hooda-gateway
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: hooda-gateway
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hooda-gateway
+    spec:
+      containers:
+        - name: hooda-gateway
+          image: registry-harbor.app.bangun-kreatif.com/empatnusabangsa/tes/tes-fe:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
 
