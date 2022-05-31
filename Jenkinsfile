@@ -22,8 +22,8 @@ pipeline {
         stage('Deploy') { 
             steps { 
                 script { 
-                    docker.withRegistry( '$REGISTRY_HOST', REGISTRY_CRED ) { 
-                        dockerImage.push(DOCKER_IMAGE) 
+                    docker.withRegistry( REGISTRY_HOST, REGISTRY_CRED ) { 
+                        dockerImage.push("${env.BUILD_NUMBER}") 
                          dockerImage.push('latest')
                     }
                 } 
