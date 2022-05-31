@@ -31,11 +31,15 @@ pipeline {
                 sh "docker rmi $FULL_IMAGE_NAME:$BUILD_NUMBER"
             }
         }
-            steps {
+        stage('Deploy to GKE') {
+            steps {       
+                    sh "sed -i 's/${env.IMAGE_NAME}:latest/${env.IMAGE_NAME}:${env.BUILD_ID}/g' deployment.yaml"
+            step{
                 withKubeCredentials(kubectlCredentials: [[contextName: 'k3s', credentialsId: 'kubernetesToken', namespace: 'default', 
                 serverUrl: 'https://127.0.0.1:6443']]){               
                 kubectl apply -f deployment.yaml          
                 }
+            }
         }
     }
 }
