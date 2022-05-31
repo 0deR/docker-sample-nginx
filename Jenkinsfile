@@ -38,7 +38,7 @@ pipeline {
         }
         stage('Deploy to local') {         
             steps{
-                withKubeCredentials(kubectlCredentials: [[contextName: 'k3s', credentialsId: 'kubernetesToken', namespace: 'default']])
+                withKubeCredentials(kubectlCredentials: [[contextName: 'k3s', credentialsId: 'kubernetesToken', namespace: 'default', serverUrl: 'https://api.k3s.com']])
                 {               
                  sh "kubectl apply -f deployment.yaml  "         
                 }  
